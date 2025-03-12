@@ -21,6 +21,8 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
+app.use(cors({ origin: "*" }));
+
 app.use(express.json());
 
 const fetchWeather = async (city) => {
