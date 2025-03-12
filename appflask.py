@@ -1,12 +1,17 @@
 from flask import Flask, request, jsonify
 import google.generativeai as genai
 import requests
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__)
 
-# 🔹 Replace with your actual API Keys
-GOOGLE_API_KEY = "AIzaSyB1z1a5erYQS80vfLf9nn2NX-OCJyFT4eU"
-WEATHER_API_KEY = "b749225708ca268bb5f9991ab9c1fec7"
+# Retrieve API keys from .env file
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
 
 # Configure Google AI
 genai.configure(api_key=GOOGLE_API_KEY)

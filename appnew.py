@@ -1,9 +1,14 @@
+import os
 import google.generativeai as genai
 import requests
+from dotenv import load_dotenv
 
-# 🔹 Replace with your actual API Keys
-GOOGLE_API_KEY = "AIzaSyB1z1a5erYQS80vfLf9nn2NX-OCJyFT4eU"
-WEATHER_API_KEY = "b749225708ca268bb5f9991ab9c1fec7"
+# Load environment variables
+load_dotenv()
+
+# 🔹 Fetch API Keys from .env file
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
 
 # Configure Google AI
 genai.configure(api_key=GOOGLE_API_KEY)
