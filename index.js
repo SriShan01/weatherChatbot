@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+const cors = require("cors");
 
 const app = express();
 const PORT = 4000;
@@ -13,6 +14,12 @@ const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 // Configure Google AI
 const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
+
+app.use(cors({ 
+  origin: "http://localhost:5173", // Allow requests from the frontend
+  methods: ["GET", "POST"], 
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 app.use(express.json());
 
