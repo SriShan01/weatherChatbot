@@ -15,13 +15,19 @@ const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
 
-app.use(cors({ 
-  origin: "http://localhost:5173", // Allow requests from the frontend
-  methods: ["GET", "POST"], 
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
+// app.use(cors({
+//   origin: "http://localhost:5173", // Allow requests from the frontend
+//   methods: ["GET", "POST"],
+//   allowedHeaders: ["Content-Type", "Authorization"]
+// }));
 
-app.use(cors({ origin: "*" }));
+app.use(
+  cors({
+    origin: "*", // Allow all origins
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allow all methods
+    allowedHeaders: ["Content-Type", "Authorization"], // Allow common headers
+  })
+);
 
 app.use(express.json());
 
